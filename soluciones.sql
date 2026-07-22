@@ -1,7 +1,7 @@
 ﻿-- ══════════════════════════════════════════
 -- RetailChain — UNION y UNION ALL
--- Autor: [Tu nombre]
--- Fecha: [Fecha de entrega]
+-- Autor: Agustina Roldan
+-- Fecha: 22/7
 -- ══════════════════════════════════════════
 -- ── CONSULTA 1: UNION ────────────────────
 -- Reporte de Catálogo Unificado
@@ -35,31 +35,24 @@ FROM inventario_sucursal_sur;
 
 SELECT COUNT(*) AS filas_union
 FROM (
-    SELECT id_producto, nombre_producto
+    SELECT id_producto, nombre_producto, stock
     FROM inventario_sucursal_norte
     UNION
-    SELECT id_producto, nombre_producto
+    SELECT id_producto, nombre_producto,stock
     FROM inventario_sucursal_sur
 ) AS resultado_union;
 
 SELECT COUNT(*) AS filas_union_all
 FROM (
-    SELECT id_producto, nombre_producto
+    SELECT id_producto, nombre_producto, stock
     FROM inventario_sucursal_norte
     UNION ALL
-    SELECT id_producto, nombre_producto
+    SELECT id_producto, nombre_producto, stock
     FROM inventario_sucursal_sur
 ) AS resultado_union_all;
 
-SELECT 'norte' AS origen, COUNT(*) AS total
+SELECT id_producto, nombre_producto, stock
 FROM inventario_sucursal_norte
-UNION ALL
-SELECT 'sur' AS origen, COUNT(*) AS total
+UNION
+SELECT id_producto, nombre_producto, stock
 FROM inventario_sucursal_sur;
-
-SELECT COUNT(*) AS union_all_total
-FROM (
-  SELECT id_producto, nombre_producto FROM inventario_sucursal_norte
-  UNION ALL
-  SELECT id_producto, nombre_producto FROM inventario_sucursal_sur
-) t;
